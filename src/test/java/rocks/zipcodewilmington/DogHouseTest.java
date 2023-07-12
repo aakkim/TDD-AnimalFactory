@@ -1,8 +1,11 @@
 package rocks.zipcodewilmington;
 
+import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Cat;
 import rocks.zipcodewilmington.animals.Dog;
 import rocks.zipcodewilmington.animals.animal_creation.AnimalFactory;
+import rocks.zipcodewilmington.animals.animal_storage.CatHouse;
 import rocks.zipcodewilmington.animals.animal_storage.DogHouse;
 
 import java.util.Date;
@@ -30,5 +33,41 @@ public class DogHouseTest {
 
         // Then
         DogHouse.getNumberOfDogs();
+    }
+
+    @Test
+    public void testAdd() {
+
+        Dog dog = new Dog("Charlie", null, 1);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        Dog actual = DogHouse.getDogById(1);
+        Assert.assertEquals(dog, actual);
+    }
+
+    @Test
+    public void testRemoveDog() {
+        Dog dog = new Dog("Charlie", null, 1);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        DogHouse.remove(dog);
+        Assert.assertNull(DogHouse.getDogById(1));
+    }
+
+    @Test
+    public void testRemoveById() {
+        Dog dog = new Dog("Charlie", null, 1);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        DogHouse.remove(1);
+        Assert.assertNull(DogHouse.getDogById(1));
+    }
+
+    @Test
+    public void testGetById() {
+        Dog dog = new Dog("Charlie", null, 1);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        Assert.assertEquals(dog, DogHouse.getDogById(1));
     }
 }

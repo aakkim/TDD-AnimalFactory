@@ -14,6 +14,8 @@ public abstract class Mammal implements Animal {
     private String name;
     private Date birthDate;
 
+
+
     public Mammal(String name, Date birthDate, Integer id) {
         this.name = name;
         this.birthDate = birthDate;
